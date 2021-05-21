@@ -1,22 +1,18 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import CssBaseline from "@material-ui/core/CssBaseline";
-import "@fontsource/roboto";
-import {store} from "./redux/store"
-import {Provider} from "react-redux"
-
+import 'sneaks-api'
+const SneaksAPI = require('sneaks-api');
+const sneaks = new SneaksAPI();
+sneaks.getProducts("Yeezy Cinder", function(err, products){
+  console.log(products)
+})
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Fragment>
-        <CssBaseline/>
-        <App/>
-      </Fragment>
-    </Provider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

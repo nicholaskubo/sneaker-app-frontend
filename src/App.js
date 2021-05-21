@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import ErrorPage from "./pages/ErrorPage";
+import {connect} from "react-redux"
+import shoes from "./redux/reducers/shoes";
 
-function App() {
+const SHOEURL = "http://localhost:3000/shoes"
+
+function App(props) {
+
+const fetchShoes = () => {
+  fetch(SHOEURL)
+  .then((data) => data.json())
+  .then((shoeData) => {
+    props.getShoes(shoeData)
+    console.log(props)
+  })
+
+}
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => fetchShoes()}>Shoes</button>
+      {/* {console.log(props.shoes)} */}
     </div>
   );
 }
 
-export default App;
+
+
+
+const mapStateToProps = (state) => {
+  return {
+    shoes: state.shoes
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getShoes: (shoes) => {
+      dispatch({type:"GETSHOES", payload:shoes})
+    }
+  }  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
