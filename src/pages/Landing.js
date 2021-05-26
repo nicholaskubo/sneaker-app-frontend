@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+// import React, { Component } from "react";
 // import LeaderBoardContainer from "./LeaderBoardContainer.js"
 
 // fetch("https://the-sneaker-database.p.rapidapi.com/sneakers?limit=100&gender=men&silhouette=Air%20Jordan%201&page=0", {
@@ -16,11 +16,11 @@ import React, { Component } from "react";
 // 	console.error(err);
 // });
 
-export default class LandingPage extends Component {
+// export default class LandingPage extends Component {
 
     
-    render() {
+//     render() {
         // return <LeaderBoardContainer/>;
-        return "hello"
-    }
-}
+//         return "hello"
+//     }
+// }
