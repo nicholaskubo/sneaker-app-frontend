@@ -36,7 +36,7 @@ const useStyles = makeStyles({
   },
   time: {
     fontSize: 11,
-    float: "right",
+    float: "left",
     fontWeight: "bold"
   }
 });

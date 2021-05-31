@@ -11,8 +11,6 @@ import { Link } from "react-router-dom";
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Avatar from '@material-ui/core/Avatar';
-
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -24,8 +22,8 @@ const useStyles = makeStyles({
     marginTop: 25
   },
   media: {
-    height: 220,
-    width: 380,
+    height: 20,
+    width: 30,
     margin: "auto",
     marginTop: 38
   },
@@ -36,7 +34,7 @@ const useStyles = makeStyles({
   },
   time: {
     fontSize: 11,
-    float: "right",
+    float: "left",
     fontWeight: "bold"
   }
 });
@@ -79,7 +77,6 @@ let timeAgo = timeSince(new Date(props.shoe.created_at));
           <Typography className={classes.time} color="secondary" gutterBottom variant="h6" component="h2">
             {timeAgo} Ago
           </Typography>
-          <Avatar alt="Avatar" className={classes.avatar} src={`${props.shoe.user.image}`}/>
       </CardContent>
         <CardMedia
           className={classes.media}

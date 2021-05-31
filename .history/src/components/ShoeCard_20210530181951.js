@@ -38,7 +38,8 @@ const useStyles = makeStyles({
     fontSize: 11,
     float: "right",
     fontWeight: "bold"
-  }
+  },
+  
 });
 
 export default function UserShoeCard(props) {
