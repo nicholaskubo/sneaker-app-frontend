@@ -7,8 +7,10 @@ const UserShoeCardContainer = (props) => {
   return (
     <div>
        <Grid container spacing={12}>
+       <Grid item xs={100}>
       {props.user_shoes ? props.user_shoes.map((s) => <UserShoeCard key={s.id} shoe={s} />).reverse() : null}
-       </Grid>
+    </Grid>
+    </Grid>
     </div>
   );
 };

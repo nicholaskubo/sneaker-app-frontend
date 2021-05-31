@@ -6,9 +6,11 @@ import Grid from '@material-ui/core/Grid'
 const UserShoeCardContainer = (props) => {
   return (
     <div>
-       <Grid container spacing={12}>
+       <Grid container spacing={2}>
+       <Grid item xs={4}>
       {props.user_shoes ? props.user_shoes.map((s) => <UserShoeCard key={s.id} shoe={s} />).reverse() : null}
-       </Grid>
+    </Grid>
+    </Grid>
     </div>
   );
 };

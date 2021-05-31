@@ -7,27 +7,26 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { deleteUserShoe } from '../redux/actions/deleteUserShoe';
+// import { Link } from "react-router-dom";
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Avatar from '@material-ui/core/Avatar';
-
-
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 500,
+    maxWidth: 300,
     margin: "auto",
-    marginBottom: 25,
-    marginTop: 25
+    marginBottom: 20,
+    marginTop: 20
   },
   media: {
-    height: 220,
-    width: 380,
+    height: 140,
+    width: 260,
     margin: "auto",
-    marginTop: 38
+    marginTop: 28
   },
   moreInfo: {
     margin: "auto",
@@ -35,13 +34,13 @@ const useStyles = makeStyles({
     marginBottom: -20
   },
   time: {
-    fontSize: 11,
-    float: "right",
+    fontSize: 10,
+    float: "left",
     fontWeight: "bold"
   }
 });
 
-export default function UserShoeCard(props) {
+const UserShoeCard = (props) => {
   const classes = useStyles();
 
   const timeSince = (date) => {
@@ -79,13 +78,12 @@ let timeAgo = timeSince(new Date(props.shoe.created_at));
           <Typography className={classes.time} color="secondary" gutterBottom variant="h6" component="h2">
             {timeAgo} Ago
           </Typography>
-          <Avatar alt="Avatar" className={classes.avatar} src={`${props.shoe.user.image}`}/>
       </CardContent>
         <CardMedia
           className={classes.media}
           image={props.shoe.shoe.image == null ? "https://t3.ftcdn.net/jpg/03/49/45/70/360_F_349457036_XWvovNpNk79ftVg4cIpBhJurdihVoJ2B.jpg" : `${props.shoe.shoe.image}`}
           src="img"
-          title="Shoe"
+          title="User Shoe"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -103,21 +101,27 @@ let timeAgo = timeSince(new Date(props.shoe.created_at));
         </CardContent>
       </CardActionArea>
       <CardActions>
-        {/* { localStorage.getItem("user_id") == props.shoe.user_id ?
-            <Button size="small" color="primary"> Like</Button>
-            :null
-        }        */}
-        <Button size="small" color="primary"> Like</Button>
-        <Link to={`/user_shoe/${props.shoe.id}`} className={classes.names} style={{ textDecoration: 'none' }}>
+        {
+          localStorage.getItem("user_id") == props.shoe.user.id ?
           <Button size="small" color="primary">
-            More Info
+            Edit
+          </Button> 
+          :
+          null
+        } 
+          {/* <Link to={`/user_shoe/${props.shoe.id}`} className={classes.names} style={{ textDecoration: 'none' }}>
+            <Button size="small" color="primary">
+              More Info
+            </Button>
+          </Link> */}
+        {
+           localStorage.getItem("user_id") == props.shoe.user.id ?
+          <Button onClick={() => props.deleteUserShoe(props.shoe)} size="small" color="primary">
+            Delete
           </Button>
-        </Link>
-        <Link to={`/user/${props.shoe.user.id}`} className={classes.names} style={{ textDecoration: 'none' }}>
-          <Button size="small" color="primary">
-            {props.shoe.user.username}'s Closet
-          </Button>
-        </Link>
+          :
+          null
+        } 
       </CardActions>
       <Accordion>
         <AccordionSummary
@@ -159,8 +163,8 @@ let timeAgo = timeSince(new Date(props.shoe.created_at));
           }
           {
             
-            props.shoe.shoe.retail_price == "0" || props.shoe.shoe.retail_price == null  ? null :  <Typography variant="subtitle2" > Retail Price: ${props.shoe.shoe.retail_price}  </Typography>
-         
+              props.shoe.shoe.retail_price == "0" || props.shoe.shoe.retail_price == null  ? null :  <Typography variant="subtitle2" > Retail Price: ${props.shoe.shoe.retail_price}  </Typography>
+           
           }
           {
             props.shoe.shoe.gender && (
@@ -181,5 +185,16 @@ let timeAgo = timeSince(new Date(props.shoe.created_at));
         </AccordionDetails>
       </Accordion>
     </Card>
+    
   );
 }
+
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      deleteUserShoe: (user_shoe) => dispatch(deleteUserShoe(user_shoe))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(UserShoeCard);

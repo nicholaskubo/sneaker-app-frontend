@@ -13,7 +13,6 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Avatar from '@material-ui/core/Avatar';
 
-
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles({
@@ -36,7 +35,7 @@ const useStyles = makeStyles({
   },
   time: {
     fontSize: 11,
-    float: "right",
+    float: "left",
     fontWeight: "bold"
   }
 });

@@ -8,7 +8,7 @@ const UserShoeCardContainer = (props) => {
     <div>
        <Grid container spacing={12}>
       {props.user_shoes ? props.user_shoes.map((s) => <UserShoeCard key={s.id} shoe={s} />).reverse() : null}
-       </Grid>
+    </Grid>
     </div>
   );
 };

@@ -12,7 +12,7 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Avatar from '@material-ui/core/Avatar';
-
+import Grid from '@material-ui/core/Grid';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -36,7 +36,7 @@ const useStyles = makeStyles({
   },
   time: {
     fontSize: 11,
-    float: "right",
+    float: "left",
     fontWeight: "bold"
   }
 });
@@ -76,10 +76,12 @@ let timeAgo = timeSince(new Date(props.shoe.created_at));
     <Card className={classes.root}>
       <CardActionArea>
       <CardContent>
+      <Grid container spacing={3}>
           <Typography className={classes.time} color="secondary" gutterBottom variant="h6" component="h2">
             {timeAgo} Ago
           </Typography>
           <Avatar alt="Avatar" className={classes.avatar} src={`${props.shoe.user.image}`}/>
+          </Grid>
       </CardContent>
         <CardMedia
           className={classes.media}
