@@ -58,11 +58,11 @@ const useStyles = makeStyles({
 });
 
 const Bio = (props) => {
-  const user = props.users.find(u=> u.id == props.location.pathname.split("/")[2])
+  const userX = props.users.find(u=> u.id == props.location.pathname.split("/")[2])
   
   const classes = useStyles();
-  const [bio, setBio] = useState(user.bio);
-  const [image, setImage] = useState(user.image);
+  const [bio, setBio] = useState(userX.bio);
+  const [image, setImage] = useState(userX.image);
  
 
   const [toggleEdit, setToggleEdit] = useState(true)
@@ -103,7 +103,7 @@ const Bio = (props) => {
           </Typography>
           :
           <Typography className={classes.title} gutterBottom>
-          {user.username.toUpperCase()}'S
+          {userX.username.toUpperCase()}'S
           </Typography>
         }
         <Typography variant="h5" className={classes.closet} component="h2">
@@ -113,7 +113,7 @@ const Bio = (props) => {
           props.user_shoes[0] ?
           <Avatar alt="Avatar" className={classes.avatar} src={props.users.find(u=> u.id == props.user_shoes[0].user.id).image } />
           :
-          <Avatar alt="Avatar" className={classes.avatar} src={user.image} />
+          <Avatar alt="Avatar" className={classes.avatar} src={localStorage.getItem("image")} />
         }
         {
           props.user_shoes[0] ?
@@ -122,7 +122,7 @@ const Bio = (props) => {
           </Typography>
           :
           <Typography variant="body2" component="p" className={classes.bio}>
-          {user.bio} 
+          {localStorage.getItem("bio")} 
           </Typography>
         } 
         {localStorage.getItem("user_id") == props.location.pathname.split("/")[2]?
@@ -193,6 +193,7 @@ const mapStateToProps = (state) => {
   return {
       // user_shoes: state.shoes.user_shoes.filter(s => s.user.id ==1)
       users: state.shoes.users
+      
   }
 }
 

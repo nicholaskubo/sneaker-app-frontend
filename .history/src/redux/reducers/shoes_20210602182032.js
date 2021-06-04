@@ -150,9 +150,9 @@ const shoes = (state = initialState, action) => {
         case "EDIT_USER":
             return {
                 ...state,
-               
-                users: [...state.users.filter(u => u.id !== action.user.id), action.user],
-                requesting: false
+                users: {...state.users, users: 
+                [...state.users.users].map(user => user.id === action.user.id ? action.user : user)
+            },
             }
     
       default:

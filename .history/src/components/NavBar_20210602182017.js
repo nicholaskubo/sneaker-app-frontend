@@ -83,7 +83,7 @@ const NavBar = ({ logged_in, history }) => {
           <img src={Logo} className={classes.logo}/>
             {/* <span style={{ cursor: "pointer" }}>Sneakerheads</span> */}
           </Typography>
-          {/* <div className={classes.search}>
+          <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -95,7 +95,7 @@ const NavBar = ({ logged_in, history }) => {
               }}
               inputProps={{ "aria-label": "search" }}
             />
-              </div> */}
+              </div>
               <Button
                 className={classes.buttons}
                 variant="contained"

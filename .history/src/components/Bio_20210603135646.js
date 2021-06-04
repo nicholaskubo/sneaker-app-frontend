@@ -193,6 +193,7 @@ const mapStateToProps = (state) => {
   return {
       // user_shoes: state.shoes.user_shoes.filter(s => s.user.id ==1)
       users: state.shoes.users
+      
   }
 }
 

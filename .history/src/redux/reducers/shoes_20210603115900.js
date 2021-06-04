@@ -141,19 +141,8 @@ const shoes = (state = initialState, action) => {
                 comments: state.comments.filter(c => c.id !== action.comment.id),
                 requesting: false 
             }
-        case "START_EDITING_USER_REQUEST":
-            return {
-                ...state,
-                users: [...state.users],
-                requesting: true
-            }
-        case "EDIT_USER":
-            return {
-                ...state,
-               
-                users: [...state.users.filter(u => u.id !== action.user.id), action.user],
-                requesting: false
-            }
+      
+  
     
       default:
           return state

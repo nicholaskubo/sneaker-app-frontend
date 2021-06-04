@@ -122,7 +122,7 @@ const Bio = (props) => {
           </Typography>
           :
           <Typography variant="body2" component="p" className={classes.bio}>
-          {user.bio} 
+          {localStorage.getItem("bio")} 
           </Typography>
         } 
         {localStorage.getItem("user_id") == props.location.pathname.split("/")[2]?
@@ -193,6 +193,7 @@ const mapStateToProps = (state) => {
   return {
       // user_shoes: state.shoes.user_shoes.filter(s => s.user.id ==1)
       users: state.shoes.users
+      
   }
 }
 

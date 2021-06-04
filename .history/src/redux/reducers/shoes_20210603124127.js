@@ -151,7 +151,7 @@ const shoes = (state = initialState, action) => {
             return {
                 ...state,
                
-                users: [...state.users.filter(u => u.id !== action.user.id), action.user],
+                users: [state.users.filter(u => u.id !== action.user.id), action.user],
                 requesting: false
             }
     
