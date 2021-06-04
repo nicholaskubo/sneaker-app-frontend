@@ -50,7 +50,7 @@ const Profile = (props) => {
         <div>
             <Bio user_shoes={props.user_shoes.filter(s => s.user.id == user_id)} users={props.users}></Bio> 
              {localStorage.getItem("user_id") == user_id ? <AddShoe shoes={props.shoes}></AddShoe> : null }
-             <Button
+             {/* <Button
                 className={classes.buttons}
                 variant="contained"
                 color="primary"
@@ -59,13 +59,13 @@ const Profile = (props) => {
                 }
                 }
               >
-                {toggleFav ? "View My Likes" : "View My Closet"}
+                {toggleFav? "View My Likes" : "View My Closet"}
               </Button>
               {toggleFav ?
             <UserShoeCardContainer user_shoes={props.user_shoes.filter(s => s.user.id == user_id)} likes={props.likes} comments={props.comments} ></UserShoeCardContainer>
                 :
             <UserLikesCardContainer user_shoes={props.user_shoes} likes={props.likes} comments={props.comments} user_likes={user_likes} ></UserLikesCardContainer>
-              }
+              } */}
         </div>
     )
 }

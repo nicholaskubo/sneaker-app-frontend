@@ -59,7 +59,7 @@ const Profile = (props) => {
                 }
                 }
               >
-                {toggleFav ? "View My Likes" : "View My Closet"}
+                {toggleFav? "View My Likes" : "View My Closet"}
               </Button>
               {toggleFav ?
             <UserShoeCardContainer user_shoes={props.user_shoes.filter(s => s.user.id == user_id)} likes={props.likes} comments={props.comments} ></UserShoeCardContainer>

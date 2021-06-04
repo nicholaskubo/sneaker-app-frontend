@@ -42,23 +42,16 @@ const useStyles = makeStyles({
       margin: "auto",
       marginBottom: 21
   },
-  editButton: {
-    marginTop: 12,
-    height: 20
-  },
-  bio: {
-    fontSize:16
+  buttons: {
+    marginTop: 10
   },
   form: {
     marginTop: 10
-  },
-  addButton: {
-    
   }
 });
 
 const Bio = (props) => {
-  const user = props.users.find(u=> u.id == props.location.pathname.split("/")[2])
+  const user = props.users.find(u=> u.id == props.user_shoes[0].user.id)
   
   const classes = useStyles();
   const [bio, setBio] = useState(user.bio);
@@ -92,18 +85,18 @@ const Bio = (props) => {
   }
   props.editUser(user)
 }
-// const user = props.users.find(u=> u.id == props.user_shoes[0].user.id)
+
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
         {
           props.user_shoes[0] ?
           <Typography className={classes.title} gutterBottom>
-          {props.users.find(u=> u.id == props.user_shoes[0].user.id).username.toUpperCase()}'S
+          {user.username.toUpperCase()}'S
           </Typography>
           :
           <Typography className={classes.title} gutterBottom>
-          {user.username.toUpperCase()}'S
+          {localStorage.getItem("username").toUpperCase()}'S
           </Typography>
         }
         <Typography variant="h5" className={classes.closet} component="h2">
@@ -111,23 +104,22 @@ const Bio = (props) => {
         </Typography>
         {
           props.user_shoes[0] ?
-          <Avatar alt="Avatar" className={classes.avatar} src={props.users.find(u=> u.id == props.user_shoes[0].user.id).image } />
+          <Avatar alt="Avatar" className={classes.avatar} src={`${user.image}`} />
           :
-          <Avatar alt="Avatar" className={classes.avatar} src={user.image} />
+          <Avatar alt="Avatar" className={classes.avatar} src={localStorage.getItem("image")} />
         }
         {
           props.user_shoes[0] ?
-          <Typography variant="body2" component="p" className={classes.bio}>
-          {props.users.find(u=> u.id == props.user_shoes[0].user.id).bio} 
+          <Typography variant="body2" component="p">
+          {user.bio}
           </Typography>
           :
-          <Typography variant="body2" component="p" className={classes.bio}>
-          {user.bio} 
+          <Typography variant="body2" component="p">
+          {localStorage.getItem("bio")} 
           </Typography>
-        } 
-        {localStorage.getItem("user_id") == props.location.pathname.split("/")[2]?
+        }
           <Button
-            className={classes.editButton}
+            className={classes.buttons}
             variant="contained"
             color="primary"
             onClick={() => {
@@ -137,8 +129,6 @@ const Bio = (props) => {
           >
             {toggleEdit ? "Edit Bio" : "Close"}
           </Button>
-          :
-          null}
           
           {toggleEdit ? null :
             <Grid className={classes.form} container spacing={3}>
@@ -168,7 +158,7 @@ const Bio = (props) => {
                   style={{ width: "100%" }}
                 />
                 </Grid>
-              
+                <Grid item xs>
                 <Button
                   className={classes.addButton}
                   variant="contained"
@@ -181,7 +171,7 @@ const Bio = (props) => {
                   Save Changes
               </Button>
               </Grid>
-            
+              </Grid> 
            }
       </CardContent>
      
@@ -193,6 +183,7 @@ const mapStateToProps = (state) => {
   return {
       // user_shoes: state.shoes.user_shoes.filter(s => s.user.id ==1)
       users: state.shoes.users
+      
   }
 }
 
